@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>View Only Image</title>
+    <title>Protected Image</title>
     <style>
         body { 
             display: flex; 
@@ -10,20 +10,34 @@
             align-items: center; 
             background-color: #f0f0f0;
             margin: 0;
+            user-select: none;
+            -webkit-user-select: none; 
+            -moz-user-select: none; 
+            -ms-user-select: none;
         }
         .image-container {
             position: relative;
-        }
-         .image-container::after {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; 
-            width: 100%; 
-            height: 100%;
-            background-color: rgba(255, 255, 255, 0.01); /* Lapisan hampir transparan */
-            pointer-events: none;
+            width: 80%;
+            max-width: 600px;
         }
 
+        img {
+            width: 100%;
+            height: auto;
+            pointer-events: none;
+            -webkit-user-drag: none;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0; 
+            left: 0; 
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1); /* Overlay transparan */
+            backdrop-filter: blur(3px); /* Efek blur */
+            pointer-events: none;
+        }
          .noise {
             position: absolute;
             top: 0;
@@ -33,11 +47,6 @@
             background: url('https://www.transparenttextures.com/patterns/noise.png'); /* Noise pattern */
             opacity: 0.15;
             pointer-events: none; 
-        }
-        img {
-            max-width: 100%;
-            height: auto;
-            pointer-events: none; /* Biar gak bisa klik kanan */
         }
     </style>
 </head>
